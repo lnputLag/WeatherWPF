@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Label Content="Погодное приложение" HorizontalAlignment="Center" Margin="0,96,0,0" VerticalAlignment="Top" FontSize="22"/>
+        <TextBox x:Name="UserCityTextBox" HorizontalAlignment="Center" Margin="0,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="244" Height="25"/>
+        <Button x:Name="GetWeatherBtn" Content="Получить погоду" HorizontalAlignment="Center" Margin="0,217,0,0" VerticalAlignment="Top" Width="118" Height="30" Click="GetWeatherBtn_Click"/>
+        <Label x:Name="WeatherResults" Content="" HorizontalAlignment="Center" Margin="0,300,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>
