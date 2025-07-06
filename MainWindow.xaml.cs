@@ -32,7 +32,7 @@ namespace WeatherWPF
                 string data = await GetWeather(city);
                 var json = JObject.Parse(data);
                 string temp = json["main"]["temp"].ToString();
-                WeatherResults.Content = temp;
+                WeatherResults.Content = $"В городе {city} {temp} градусов";
             }
             catch (HttpRequestException ex)
             {
