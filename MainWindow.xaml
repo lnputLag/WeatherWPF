@@ -21,7 +21,13 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Label Content="UserName" Foreground="#ffffff" FontSize="18" Margin="10" />
+        <StackPanel Grid.Row="1">
+            <RadioButton Style="{StaticResource MenuItem}" IsChecked="True" Content="Главная" />
+            <RadioButton Style="{StaticResource MenuItem}" Content="Заметки" />
+            <RadioButton Style="{StaticResource MenuItem}" Content="Личный кабинет" />
+        </StackPanel>
+        
+        <Label Content="UserName" Foreground="#ffffff" FontSize="18" Margin=" 40, 10, 10, 10" />
 
         <Image Source="/Images/exit.png" Grid.Column="1" HorizontalAlignment="Right" 
                Height="30" Width="30" Margin="10" />
