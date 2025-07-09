@@ -22,9 +22,9 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="1">
-            <RadioButton Style="{StaticResource MenuItem}" IsChecked="True" Content="Главная" />
-            <RadioButton Style="{StaticResource MenuItem}" Content="Заметки" />
-            <RadioButton Style="{StaticResource MenuItem}" Content="Личный кабинет" />
+            <RadioButton Style="{StaticResource MenuItem}" x:Name="MainScreen" Content="Главная" Checked="RadioButton_Checked"/>
+            <RadioButton Style="{StaticResource MenuItem}" x:Name="NotesScreen" Content="Заметки" Checked="RadioButton_Checked"/>
+            <RadioButton Style="{StaticResource MenuItem}" x:Name="CabinetScreen" Content="Личный кабинет" Checked="RadioButton_Checked" />
         </StackPanel>
         
         <Label Content="UserName" Foreground="#ffffff" FontSize="18" Margin=" 40, 10, 10, 10" />
@@ -32,7 +32,7 @@
         <Image Source="/Images/exit.png" Grid.Column="1" HorizontalAlignment="Right" 
                Height="30" Width="30" Margin="10" />
 
-        <StackPanel Grid.Row="1" Grid.Column="1">
+        <StackPanel Grid.Row="1" Grid.Column="1" x:Name="MainScreenPanel">
             <Image Source="/Images/weather.png" Height="50" Width="60" Margin="0, 50, 0, 0"/>
             <Label Margin="0, 30, 0, 50" Content="Погодное приложение" HorizontalAlignment="Center"  
                    VerticalAlignment="Top" FontSize="22" Foreground="White"/>

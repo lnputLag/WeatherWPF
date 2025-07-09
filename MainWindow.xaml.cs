@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
+using System.Windows.Controls;
 
 namespace WeatherWPF
 {
@@ -16,6 +17,7 @@ namespace WeatherWPF
         public MainWindow()
         {
             InitializeComponent();
+            MainScreen.IsChecked = true;
         }
 
         private async void GetWeatherBtn_Click(object sender, RoutedEventArgs e)
@@ -48,6 +50,21 @@ namespace WeatherWPF
             //string responce = await client.GetStringAsync(url);
             //return responce;
             return await client.GetStringAsync(url);
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            string objName = ((RadioButton)sender).Name;
+            //MessageBox.Show(objName);
+
+            StackPanel[] panels = { MainScreenPanel };
+            foreach (var panel in panels)
+                panel.Visibility = Visibility.Hidden;
+           
+            switch(objName)
+            {
+                case "MainScreen": MainScreenPanel.Visibility = Visibility.Visible; break;
+            }
         }
     }
 }
