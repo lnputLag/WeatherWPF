@@ -3,6 +3,10 @@ using System.Windows;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using System.Windows.Controls;
+using System.IO;
+using System.Xml.Serialization;
+using WeatherWPF.Models;
+using System;
 
 namespace WeatherWPF
 {
@@ -18,6 +22,27 @@ namespace WeatherWPF
         {
             InitializeComponent();
             MainScreen.IsChecked = true;
+
+            if(!File.Exists("user.xml"))
+            {
+                ShowAuthWindow();
+            }
+
+            //Десириализация
+            XmlSerializer xml = new XmlSerializer(typeof(AuthUser));
+            using (FileStream file = new FileStream("user.xml", FileMode.Open))
+            {
+                AuthUser auth = (AuthUser)xml.Deserialize(file);
+                UserNameLabel.Content = auth.Login;
+            }
+        }
+
+        private void ShowAuthWindow()
+        {
+            Hide();
+            AuthWindow window = new AuthWindow();
+            window.Show();
+            Close();
         }
 
         private async void GetWeatherBtn_Click(object sender, RoutedEventArgs e)
@@ -65,6 +90,12 @@ namespace WeatherWPF
             {
                 case "MainScreen": MainScreenPanel.Visibility = Visibility.Visible; break;
             }
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            File.Delete("user.xml");
+            ShowAuthWindow();
         }
     }
 }

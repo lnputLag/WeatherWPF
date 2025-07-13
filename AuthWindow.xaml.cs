@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
 using WeatherWPF.Models;
 
 namespace WeatherWPF
@@ -24,6 +26,11 @@ namespace WeatherWPF
         public AuthWindow()
         {
             InitializeComponent();
+
+            if(File.Exists("user.xml"))
+            {
+                ShowMainWindow();
+            }
         }
 
         private void UserAuth_Click(object sender, RoutedEventArgs e)
@@ -46,11 +53,25 @@ namespace WeatherWPF
                 MessageBox.Show("Данный пользователь не зарегестрирован");
             else 
             {
-                Hide();
-                MainWindow window = new MainWindow();
-                window.Show();
-                Close();
+                //Выполняем сериализацию
+                AuthUser auth = new AuthUser(login, authUser.Email);
+                XmlSerializer xml = new XmlSerializer(typeof(AuthUser));
+                using(FileStream file = new FileStream("user.xml", FileMode.CreateNew))
+                {
+                    xml.Serialize(file, auth);
+                }
+
+                ShowMainWindow(); 
+                
             }
+        }
+
+        private void ShowMainWindow()
+        {
+            Hide();
+            MainWindow window = new MainWindow();
+            window.Show();
+            Close();
         }
 
         private string Hash(string input)
