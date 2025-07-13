@@ -11,7 +11,7 @@
         Icon="/Images/app_icon.png"
         Title="Weather App" Height="450" Width="800">
     <StackPanel>
-        <Label Margin="0, 70, 0, 30" Content="Регистрация"
+        <Label Margin="0, 50, 0, 30" Content="Регистрация"
                 HorizontalAlignment="Center"  
                 VerticalAlignment="Top" FontSize="22" Foreground="White"
                 FontWeight="Bold"/>
@@ -35,5 +35,9 @@
                 HorizontalAlignment="Center"  VerticalAlignment="Top"
                 Width="200" Height="35" 
                 Margin="0, 50, 0, 0" Click="UserRegister_Click"/>
+        <Button x:Name="AuthWindowBtn" Content="Авторизация" 
+                HorizontalAlignment="Center"  VerticalAlignment="Top"
+                Width="200" Height="35" 
+                Margin="0, 20, 0, 0" Style="{StaticResource MaterialDesignFlatLightBgButton}" Click="AuthWindowBtn_Click" />
     </StackPanel>   
 </Window>

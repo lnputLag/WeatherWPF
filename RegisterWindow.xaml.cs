@@ -39,6 +39,13 @@ namespace WeatherWPF
                 return;
             }
 
+            User authUser  = _db.Users.Where(el => el.Login == login).FirstOrDefault();
+            if (authUser != null) 
+            {
+                MessageBox.Show("Такой пользователь уже зарегестрирован в системе");
+                return;
+            }
+
             User user = new User(login, email, Hash(password));   
             _db.Users.Add(user);
             _db.SaveChanges();
@@ -57,6 +64,14 @@ namespace WeatherWPF
                 var hash = sha1.ComputeHash(temp);
                 return Convert.ToBase64String(hash);
             }
+        }
+
+        private void AuthWindowBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Hide();
+            AuthWindow window = new AuthWindow();
+            window.Show();
+            Close();
         }
     }
 }

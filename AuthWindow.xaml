@@ -29,5 +29,9 @@
             HorizontalAlignment="Center"  VerticalAlignment="Top"
             Width="200" Height="35" 
             Margin="0, 50, 0, 0" Click="UserAuth_Click"/>
+        <Button x:Name="RegWindowBtn" Content="Зарегистрироваться" 
+            HorizontalAlignment="Center"  VerticalAlignment="Top"
+            Width="200" Height="35" 
+            Margin="0, 20, 0, 0" Style="{StaticResource MaterialDesignFlatLightBgButton}" Click="RehWindowBtn_Click" />
     </StackPanel>
 </Window>

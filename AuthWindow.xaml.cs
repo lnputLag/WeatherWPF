@@ -46,9 +46,10 @@ namespace WeatherWPF
                 MessageBox.Show("Данный пользователь не зарегестрирован");
             else 
             {
-                UserLoginField.Text = "";
-                UserPassField.Password = "";
-                UserAuth.Content = "Готово";
+                Hide();
+                MainWindow window = new MainWindow();
+                window.Show();
+                Close();
             }
         }
 
@@ -60,6 +61,14 @@ namespace WeatherWPF
                 var hash = sha1.ComputeHash(temp);
                 return Convert.ToBase64String(hash);
             }
+        }
+
+        private void RehWindowBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Hide();
+            RegisterWindow window = new RegisterWindow();
+            window.Show();
+            Close();
         }
     }
 }
