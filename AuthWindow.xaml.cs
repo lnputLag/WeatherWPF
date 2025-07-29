@@ -56,7 +56,7 @@ namespace WeatherWPF
                 //Выполняем сериализацию
                 AuthUser auth = new AuthUser(login, authUser.Email);
                 XmlSerializer xml = new XmlSerializer(typeof(AuthUser));
-                using(FileStream file = new FileStream("user.xml", FileMode.CreateNew))
+                using(FileStream file = new FileStream("user.xml", FileMode.Create))
                 {
                     xml.Serialize(file, auth);
                 }

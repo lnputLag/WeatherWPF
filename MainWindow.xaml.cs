@@ -7,6 +7,7 @@ using System.IO;
 using System.Xml.Serialization;
 using WeatherWPF.Models;
 using System;
+using System.Linq;
 
 namespace WeatherWPF
 {
@@ -82,13 +83,14 @@ namespace WeatherWPF
             string objName = ((RadioButton)sender).Name;
             //MessageBox.Show(objName);
 
-            StackPanel[] panels = { MainScreenPanel };
+            StackPanel[] panels = { MainScreenPanel, CabinetScreenPanel };
             foreach (var panel in panels)
                 panel.Visibility = Visibility.Hidden;
            
             switch(objName)
             {
                 case "MainScreen": MainScreenPanel.Visibility = Visibility.Visible; break;
+                case "CabinetScreen": CabinetScreenPanel.Visibility = Visibility.Visible; break;
             }
         }
 
@@ -96,6 +98,39 @@ namespace WeatherWPF
         {
             File.Delete("user.xml");
             ShowAuthWindow();
+        }
+
+        private void UserChangeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string login = UserLogin.Text.Trim();
+            string email = UserEmail.Text.Trim();
+            if (login.Equals("") || !email.Contains("@") )
+            {
+                MessageBox.Show("Вы что-то ввели неверно!");
+                return;
+            }
+
+            AppDbContext db = new AppDbContext();
+            int countUsers = Convert.ToInt32(db.Users.Count(el => el.Login == login));
+            if(countUsers !=0 && !login.Equals(UserNameLabel.Content))
+            {
+                MessageBox.Show("Такой логин уже занят");
+                return;
+            }
+
+            User user = db.Users.FirstOrDefault(el => el.Login == UserNameLabel.Content.ToString());
+            user.Email = email;
+            user.Login = login;
+            db.SaveChanges();
+            UserNameLabel.Content = login;
+            UserChangeBtn.Content = "Готово";
+
+            AuthUser auth = new AuthUser(login, email);
+            XmlSerializer xml = new XmlSerializer(typeof(AuthUser));
+            using (FileStream file = new FileStream("user.xml", FileMode.Create))
+            {
+                xml.Serialize(file, auth);
+            }
         }
     }
 }

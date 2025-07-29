@@ -54,7 +54,22 @@
                    VerticalAlignment="Top" Foreground="White" FontWeight="Bold"
                    Margin="0, 20, 0, 0" Cursor=""/>
         </StackPanel>
-        
 
+        <StackPanel Grid.Row="1" Grid.Column="1" x:Name="CabinetScreenPanel" Visibility="Hidden">
+            <Label Margin="0, 30, 0, 50" Content="Личный кабинет" HorizontalAlignment="Center"  
+           VerticalAlignment="Top" FontSize="22" Foreground="White"/>
+            <TextBox x:Name="UserLogin" HorizontalAlignment="Center"  
+             TextWrapping="Wrap" VerticalAlignment="Top" Width="244" 
+             Height="25" Foreground="White" 
+             materialDesign:HintAssist.Hint="Ваш логин" />
+            <TextBox x:Name="UserEmail" HorizontalAlignment="Center"  
+             TextWrapping="Wrap" VerticalAlignment="Top" Width="244" 
+             Height="25" Foreground="White" 
+             materialDesign:HintAssist.Hint="Ваша почта" />
+            <Button x:Name="UserChangeBtn" Content="Изменить" 
+            HorizontalAlignment="Center"  VerticalAlignment="Top"
+            Width="150" Height="30" 
+            Margin="0, 30, 0, 0" Click="UserChangeBtn_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
