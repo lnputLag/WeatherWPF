@@ -214,7 +214,13 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\cut_icon.png" />
+    <Resource Include="Images\new_file.png" />
+    <Resource Include="Images\open_file.png" />
+    <Resource Include="Images\paste_icon.png" />
+    <Resource Include="Images\save_file.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\app_icon.png" />
     <Resource Include="Images\exit.png" />

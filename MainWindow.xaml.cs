@@ -8,6 +8,8 @@ using System.Xml.Serialization;
 using WeatherWPF.Models;
 using System;
 using System.Linq;
+using Microsoft.Win32;
+using System.Windows.Media;
 
 namespace WeatherWPF
 {
@@ -83,7 +85,7 @@ namespace WeatherWPF
             string objName = ((RadioButton)sender).Name;
             //MessageBox.Show(objName);
 
-            StackPanel[] panels = { MainScreenPanel, CabinetScreenPanel };
+            StackPanel[] panels = { MainScreenPanel, CabinetScreenPanel, NotesScreenPanel };
             foreach (var panel in panels)
                 panel.Visibility = Visibility.Hidden;
            
@@ -91,6 +93,7 @@ namespace WeatherWPF
             {
                 case "MainScreen": MainScreenPanel.Visibility = Visibility.Visible; break;
                 case "CabinetScreen": CabinetScreenPanel.Visibility = Visibility.Visible; break;
+                case "NotesScreen": NotesScreenPanel.Visibility = Visibility.Visible; break;
             }
         }
 
@@ -131,6 +134,30 @@ namespace WeatherWPF
             {
                 xml.Serialize(file, auth);
             }
+        }
+
+        private void MenuOpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.ShowDialog();
+        }
+
+        private void MenuSaveFile_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.ShowDialog();
+        }
+
+        private void TimesNewRomanSetText_Click(object sender, RoutedEventArgs e)
+        {
+            UserNotesTextBox.FontFamily = new FontFamily("Times New Roman");
+            VerdanaSetText.IsChecked = false;
+        }
+
+        private void VerdanaSetText_Click(object sender, RoutedEventArgs e)
+        {
+            UserNotesTextBox.FontFamily = new FontFamily("Verdana");
+            TimesNewRomanSetText.IsChecked = false;
         }
     }
 }

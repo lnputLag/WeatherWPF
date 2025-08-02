@@ -38,7 +38,7 @@
             </Button.Background>
         </Button>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" x:Name="MainScreenPanel">
+        <StackPanel Grid.Row="1" Grid.Column="1" x:Name="MainScreenPanel" Visibility="Hidden">
             <Image Source="/Images/weather.png" Height="50" Width="60" Margin="0, 50, 0, 0"/>
             <Label Margin="0, 30, 0, 50" Content="Погодное приложение" HorizontalAlignment="Center"  
                    VerticalAlignment="Top" FontSize="22" Foreground="White"/>
@@ -70,6 +70,49 @@
             HorizontalAlignment="Center"  VerticalAlignment="Top"
             Width="150" Height="30" 
             Margin="0, 30, 0, 0" Click="UserChangeBtn_Click"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" x:Name="NotesScreenPanel" >
+            <Menu Background="#16161c">
+                <MenuItem  Header="Файл" Foreground="White" x:Name="MenuFile">
+                    <MenuItem Header="Новый файл" x:Name="MenuNewFile">
+                        <MenuItem.Icon>
+                            <Image Source="/Images/new_file.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Открыть файл" Click="MenuOpenFile_Click" x:Name="MenuOpenFile">
+                        <MenuItem.Icon>
+                            <Image Source="/Images/open_file.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Сохранить файл" Click="MenuSaveFile_Click" x:Name="MenuSaveFile">
+                        <MenuItem.Icon>
+                            <Image Source="/Images/save_file.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+
+                <MenuItem Header="Редактировать" x:Name="MenuEdit" Foreground="White">
+                    <MenuItem Header="Шрифт" x:Name="MenuSetFont">
+                        <MenuItem Header="Times New Roman" Click="TimesNewRomanSetText_Click" x:Name="TimesNewRomanSetText"
+                                  IsCheckable="True" StaysOpenOnClick="True"/>
+                        <MenuItem Header="Verdana" Click="VerdanaSetText_Click" x:Name="VerdanaSetText"
+                                  IsCheckable="True" StaysOpenOnClick="True"/>
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem x:Name="MenuCopyText" Header="Скопировать" InputGestureText="Cntrl+C"
+                              Command="ApplicationCommands.Copy" Foreground="White"/>
+                    <MenuItem x:Name="MenuCutText" Header="Вырезать" InputGestureText="Cntrl+X"
+                              Command="ApplicationCommands.Cut" Foreground="White"/>
+                    <MenuItem x:Name="MenuPasteText" Header="Вставить" InputGestureText="Cntrl+V"
+                              Command="ApplicationCommands.Paste" Foreground="White"/>
+                </MenuItem>
+            </Menu>
+            <TextBox x:Name="UserNotesTextBox" Margin="10"
+                     materialDesign:HintAssist.Hint="Ваша заметка тут"
+                     Foreground="White" AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"
+                     MaxHeight="200"/>
         </StackPanel>
     </Grid>
 </Window>
