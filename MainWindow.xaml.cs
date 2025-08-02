@@ -140,13 +140,23 @@ namespace WeatherWPF
         private void MenuOpenFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.ShowDialog();
+            bool isFolder = (bool)openFileDialog.ShowDialog();
+
+            if (isFolder)
+            {
+                using (Stream stream = File.Open(openFileDialog.FileName, FileMode.Open))
+                {
+                    using (StreamReader writer = new StreamReader(stream))
+                    {
+                       UserNotesTextBox.Text = writer.ReadToEnd();
+                    }
+                }
+            }
         }
 
         private void MenuSaveFile_Click(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.ShowDialog();
+            SaveTextToFile();
         }
 
         private void TimesNewRomanSetText_Click(object sender, RoutedEventArgs e)
@@ -166,6 +176,32 @@ namespace WeatherWPF
             ComboBoxItem comboBoxItem = (ComboBoxItem)SelectFontSize.SelectedItem;
             int fontSize = Convert.ToInt32(comboBoxItem.Tag);
             UserNotesTextBox.FontSize = fontSize;
+        }
+
+        private void MenuNewFile_Click(object sender, RoutedEventArgs e)
+        {
+            if (UserNotesTextBox.Text.Trim().Equals(""))
+                return;
+
+            SaveTextToFile();
+            UserNotesTextBox.Text = "";
+        }
+
+        private void SaveTextToFile()
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            bool isFolder = (bool)saveFileDialog.ShowDialog();
+
+            if (isFolder)
+            {
+                using (Stream file = File.Open(saveFileDialog.FileName, FileMode.OpenOrCreate))
+                {
+                    using (StreamWriter writer = new StreamWriter(file))
+                    {
+                        writer.Write(UserNotesTextBox.Text);
+                    }
+                }
+            }
         }
     }
 }

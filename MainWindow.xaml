@@ -38,7 +38,7 @@
             </Button.Background>
         </Button>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" x:Name="MainScreenPanel" Visibility="Hidden">
+        <StackPanel Grid.Row="1" Grid.Column="1" x:Name="MainScreenPanel" >
             <Image Source="/Images/weather.png" Height="50" Width="60" Margin="0, 50, 0, 0"/>
             <Label Margin="0, 30, 0, 50" Content="Погодное приложение" HorizontalAlignment="Center"  
                    VerticalAlignment="Top" FontSize="22" Foreground="White"/>
@@ -72,10 +72,10 @@
             Margin="0, 30, 0, 0" Click="UserChangeBtn_Click"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" x:Name="NotesScreenPanel" >
+        <StackPanel Grid.Row="1" Grid.Column="1" x:Name="NotesScreenPanel" Visibility="Hidden">
             <Menu Background="#16161c">
                 <MenuItem  Header="Файл" Foreground="White" x:Name="MenuFile">
-                    <MenuItem Header="Новый файл" x:Name="MenuNewFile">
+                    <MenuItem Header="Новый файл" x:Name="MenuNewFile" Click="MenuNewFile_Click">
                         <MenuItem.Icon>
                             <Image Source="/Images/new_file.png" />
                         </MenuItem.Icon>
