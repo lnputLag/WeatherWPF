@@ -25,6 +25,7 @@ namespace WeatherWPF
         {
             InitializeComponent();
             MainScreen.IsChecked = true;
+            SetDefaultSize.IsSelected = true;
 
             if(!File.Exists("user.xml"))
             {
@@ -158,6 +159,13 @@ namespace WeatherWPF
         {
             UserNotesTextBox.FontFamily = new FontFamily("Verdana");
             TimesNewRomanSetText.IsChecked = false;
+        }
+
+        private void SelectFontSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxItem comboBoxItem = (ComboBoxItem)SelectFontSize.SelectedItem;
+            int fontSize = Convert.ToInt32(comboBoxItem.Tag);
+            UserNotesTextBox.FontSize = fontSize;
         }
     }
 }

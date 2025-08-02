@@ -108,11 +108,36 @@
                               Command="ApplicationCommands.Paste" Foreground="White"/>
                 </MenuItem>
             </Menu>
+            <ToolBarTray Background="Transparent" >
+                <ToolBar Background="Transparent">
+                    <Button ToolTip="Сохранить файл" Click="MenuSaveFile_Click">
+                        <Image Source="/Images/save_file.png" Width="25" Height="25"/>
+                    </Button>
+                    <Button ToolTip="Открыть файл" Click="MenuOpenFile_Click">
+                        <Image Source="/Images/open_file.png" Width="25" Height="25"/>
+                    </Button>
+                    <Button ToolTip="Вырезать файл" Command="ApplicationCommands.Cut">
+                        <Image Source="/Images/cut_icon.png" Width="25" Height="25"/>
+                    </Button>
+                    <Button ToolTip="Вставить файл" Command="ApplicationCommands.Paste">
+                        <Image Source="/Images/paste_icon.png" Width="25" Height="25"/>
+                    </Button>
+                    <Label Content="Размер шрифта: " Foreground="White" VerticalAlignment="Center"
+                           Margin="10, 0, 0, 0"/>
+                    <ComboBox Background="Transparent" Foreground="White" x:Name="SelectFontSize" SelectionChanged="SelectFontSize_SelectionChanged">
+                        <ComboBoxItem Background="Black" Tag ="10"  Content = "10px" />
+                        <ComboBoxItem Background="Black" Tag ="12" x:Name="SetDefaultSize" Content = "12px" />
+                        <ComboBoxItem Background="Black" Tag ="14" Content = "14px" />
+                        <ComboBoxItem Background="Black" Tag ="16" Content = "16px" />
+                        <ComboBoxItem Background="Black" Tag ="20" Content = "20px" />
+                    </ComboBox>
+                </ToolBar>
+            </ToolBarTray>
             <TextBox x:Name="UserNotesTextBox" Margin="10"
                      materialDesign:HintAssist.Hint="Ваша заметка тут"
                      Foreground="White" AcceptsReturn="True"
                      VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"
-                     MaxHeight="200"/>
+                     MaxHeight="200" FontSize = "12px"/>
         </StackPanel>
     </Grid>
 </Window>
